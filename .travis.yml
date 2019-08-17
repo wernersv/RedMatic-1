@@ -26,7 +26,6 @@ deploy:
   on:
     branches:
       only:
-        - master
         - 4.x
   draft: true
 after_deploy:
