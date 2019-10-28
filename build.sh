@@ -3,7 +3,7 @@
 BUILD_DIR=`cd ${0%/*} && pwd -P`
 
 NODE_VERSION=`jq -r '.engines.node' package.json `
-ARCH=${ARCH:-armv6l}
+ARCH=${ARCH:-x86}
 
 NODE_NAME=node-v${NODE_VERSION}-linux-${ARCH}
 NODE_URL=https://nodejs.org/dist/v${NODE_VERSION}/${NODE_NAME}.tar.xz
@@ -62,10 +62,10 @@ fi
 #$PRUNE $ADDON_TMP/redmatic/lib/node_modules
 #$PRUNE $ADDON_TMP/redmatic/var/node_modules
 
-echo "copying prebuilt binaries to tmp dir..."
-cp -r $PREBUILT/* $ADDON_TMP/redmatic/
-cd $ADDON_TMP
-ln -s redmatic/bin/update_addon ./
+#echo "copying prebuilt binaries to tmp dir..."
+#cp -r $PREBUILT/* $ADDON_TMP/redmatic/
+#cd $ADDON_TMP
+#ln -s redmatic/bin/update_addon ./
 
 echo "bundling packages..."
 node $BUILD_DIR/bundle-pkgs.js
