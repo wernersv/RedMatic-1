@@ -6,7 +6,12 @@ NODE_VERSION=`jq -r '.engines.node' package.json `
 ARCH=${ARCH:-x86}
 
 NODE_NAME=node-v${NODE_VERSION}-linux-${ARCH}
-NODE_URL=https://nodejs.org/dist/v${NODE_VERSION}/${NODE_NAME}.tar.xz
+
+if [ "$ARCH" == "x86" ]; then
+    NODE_URL=https://unofficial-builds.nodejs.org/download/release/v${NODE_VERSION}/${NODE_NAME}.tar.xz
+else
+    NODE_URL=https://nodejs.org/dist/v${NODE_VERSION}/${NODE_NAME}.tar.xz
+fi
 
 ADDON_FILES=$BUILD_DIR/addon_files
 PREBUILT=$BUILD_DIR/prebuilt/$ARCH
